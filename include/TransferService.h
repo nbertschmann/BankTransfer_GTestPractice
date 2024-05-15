@@ -3,7 +3,7 @@
 
 class TransferService {
 public:
-    TransferService(BankAccount& sender, BankAccount& recipient) : sender_(sender), recipient_(recipient) {}
+    TransferService(BankAccount& sender, BankAccount& recipient);
     void transfer(double amount);
 
 private:
