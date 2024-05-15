@@ -6,15 +6,19 @@
 int main()
 {
     int initial_sender_balance = 1000;
-    ConcreteBankAccount sender = ConcreteBankAccount(1000);
+    ConcreteBankAccount sender = ConcreteBankAccount(4600);
+    std::cout << "Original sender: $" << sender.getBalance() << std::endl; 
 
     int initial_recipient_balance = 1000;
     ConcreteBankAccount recipient = ConcreteBankAccount(1000);
+    std::cout << "Original recipient: $" << recipient.getBalance() << std::endl; 
 
     TransferService transferService = TransferService(sender, recipient);
 
-    transferService.transfer(200);
+    int transfer_amount = 200;
+    std::cout << "Transfer amount: $" << transfer_amount << std::endl;
+    transferService.transfer(transfer_amount);
 
-    std::cout << sender.getBalance() << std::endl;
-    std::cout << recipient.getBalance() << std ::endl;
+    std::cout << "Sender Balance: $" << sender.getBalance() << std::endl;
+    std::cout << "Recipient Balance: $" << recipient.getBalance() << std ::endl;
 }
