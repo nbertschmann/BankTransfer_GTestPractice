@@ -3,14 +3,14 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
+using namespace ::testing;
+
 class MockBankAccount : public BankAccount {
     public:
         MOCK_METHOD(double, getBalance, (), (const, override));
-        MOCK_METHOD(void, deposit, double, (override));
-        MOCK_METHOD(void, withdraw, double, (override));
-}
-
-using ::testing::AtLeast;
+        MOCK_METHOD(void, deposit, (double), (override));
+        MOCK_METHOD(void, withdraw, (double), (override));
+};
 
 TEST(TransferServiceTest, MoneyTransferTest)
 {
@@ -21,7 +21,7 @@ TEST(TransferServiceTest, MoneyTransferTest)
     double senderInitialBalance = 1650;
     double transferAmount = 450;
 
-    EXPECT_CALL(sender, getBalance()).WillOnce(Return(senderInitialBalance))
+    EXPECT_CALL(sender, getBalance()).WillOnce(Return(senderInitialBalance));
 
     EXPECT_CALL(sender, withdraw(transferAmount));
     EXPECT_CALL(recipient, deposit(transferAmount));
@@ -32,7 +32,7 @@ TEST(TransferServiceTest, MoneyTransferTest)
     double senderFinalBalance = senderInitialBalance - transferAmount;
     double recipientFinalBalance = recipientFinalBalance + transferAmount;
 
-    EXPECT_EQUAL(senderFinalBalance, sender.getBalance());
-    EXPECT_EQUAL(recipientFinalBalance, recipient.getBalance());
+    EXPECT_EQ(senderFinalBalance, sender.getBalance());
+    EXPECT_EQ(recipientFinalBalance, recipient.getBalance());
 
 }
