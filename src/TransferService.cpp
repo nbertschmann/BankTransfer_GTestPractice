@@ -11,6 +11,6 @@ void TransferService::transfer(double amount) {
     }
 
     else{
-        throw std::runtime_error("Insufficient balance in sender account");
+        std::cout << "Insufficient balance in sender account";
     }
 }

@@ -1,6 +1,9 @@
 # Checks in BUILD_TESTING option is enabled. Allows user to control whether tests should be built alongside the project.
 if(BUILD_TESTING)
-    add_executable(transfer_service_test TransferServiceTest.cpp)
+    # add_executable(transfer_service_test TransferServiceTest.cpp)
+    set(TEST_SOURCE_FILES TransferServiceTest.cpp ../src/TransferService.cpp)  # Include the source file for tests
+
+    add_executable(transfer_service_test ${TEST_SOURCE_FILES})
 
     target_link_libraries(transfer_service_test PRIVATE GTest::gtest_main GTest::gmock_main)
     
